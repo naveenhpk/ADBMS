@@ -1,0 +1,518 @@
+1.  SQL> create table loans(accnum int,cus_name varchar(50),loanamount int,insta int,intrate number(5,2)
+,startdate date,interest int);
+
+Table created.
+
+SQL> desc loans
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACCNUM                                             NUMBER(38)
+ CUS_NAME                                           VARCHAR2(50)
+ LOANAMOUNT                                         NUMBER(38)
+ INSTA                                              NUMBER(38)
+ INTRATE                                            NUMBER(5,2)
+ STARTDATE                                          DATE
+ INTEREST                                           NUMBER(38)
+
+
+  SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 1
+Enter value for cname: r k gupta
+Enter value for amount: 30000
+Enter value for insta: 36
+Enter value for rate: 12.00
+Enter value for date: 19-jul-09
+Enter value for interest: 1200
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(1,'r k gupta',30000,36,12.00,'19-jul-09',1200)
+
+1 row created.
+
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 2
+Enter value for cname: s p sharma 
+Enter value for amount: 50000
+Enter value for insta: 48
+Enter value for rate: 10.00
+Enter value for date: 22-mar-08
+Enter value for interest: 1800
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(2,'s p sharma ',50000,48,10.00,'22-mar-08',1800)
+
+1 row created.
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 3
+Enter value for cname: k p jain
+Enter value for amount: 30000
+Enter value for insta: 36
+Enter value for rate: null
+Enter value for date: 08-mar-07
+Enter value for interest: 1600
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(3,'k p jain',30000,36,null,'08-mar-07',1600)
+
+1 row created.
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 4
+Enter value for cname: m p  yadhav
+Enter value for amount: 80000
+Enter value for insta: 60
+Enter value for rate: 10.00
+Enter value for date: 06-dec-08
+Enter value for interest: 2250
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(4,'m p  yadhav',80000,60,10.00,'06-dec-08',2250)
+
+1 row created.
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 5
+Enter value for cname: s p sinha
+Enter value for amount: 20000
+Enter value for insta: 36
+Enter value for rate: 12.50
+Enter value for date: 03-jan-2010
+Enter value for interest: 4500
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(5,'s p sinha',20000,36,12.50,'03-jan-2010',4500)
+
+1 row created.
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 6
+Enter value for cname: p sharma
+Enter value for amount: 70000
+Enter value for insta: 60
+Enter value for rate: 12.50
+Enter value for date: 05-jun-08
+Enter value for interest: 3500
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(6,'p sharma',70000,60,12.50,'05-jun-08',3500)
+
+1 row created.
+
+SQL> insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest);
+Enter value for accn: 7
+Enter value for cname: k s dhall
+Enter value for amount: 50000
+Enter value for insta: 48
+Enter value for rate: null
+Enter value for date: 05-mar-08
+Enter value for interest: 3800
+old   1: insert into loans values(&accn,'&cname',&amount,&insta,&rate,'&date',&interest)
+new   1: insert into loans values(7,'k s dhall',50000,48,null,'05-mar-08',3800)
+
+1 row created.
+
+
+SQL> set linesize 150;
+2.  SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         3 k p jain                                                30000         36            08-MAR-07       1600
+         4 m p  yadhav                                             80000         60         10 06-DEC-08       2250
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         6 p sharma                                                70000         60       12.5 05-JUN-08       3500
+         7 k s dhall                                               50000         48            05-MAR-08       3800
+
+7 rows selected.
+
+
+
+3.  SQL> select accnum,cus_name,loanamount from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT
+---------- -------------------------------------------------- ----------
+         1 r k gupta                                               30000
+         2 s p sharma                                              50000
+         3 k p jain                                                30000
+         4 m p  yadhav                                             80000
+         5 s p sinha                                               20000
+         6 p sharma                                                70000
+         7 k s dhall                                               50000
+
+7 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+4.  SQL> select * from loans where insta<40;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         3 k p jain                                                30000         36            08-MAR-07       1600
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+
+SQL> commit;
+
+Commit complete.
+
+5.  SQL> select accnum,loanamount from loans where startdate<'1-apr-2009';
+
+    ACCNUM LOANAMOUNT
+---------- ----------
+         2      50000
+         3      30000
+         4      80000
+         6      70000
+         7      50000
+
+
+6.  SQL> select intrate from loans where startdate>'1-apr-2009';
+
+   INTRATE
+----------
+        12
+      12.5
+
+
+
+
+7.  SQL> select * from loans where intrate is null;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         3 k p jain                                                30000         36            08-MAR-07       1600
+         7 k s dhall                                               50000         48            05-MAR-08       3800
+
+
+
+
+8.  SQL> select * from loans where intrate is not null;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         4 m p  yadhav                                             80000         60         10 06-DEC-08       2250
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         6 p sharma                                                70000         60       12.5 05-JUN-08       3500
+
+
+
+9.  SQL> select distinct(loanamount) from loans;
+
+LOANAMOUNT
+----------
+     50000
+     30000
+     80000
+     20000
+     70000
+
+
+
+10.  SQL> select distinct(insta) from loans;
+
+     INSTA
+----------
+        48
+        36
+        60
+11.  SQL> select * from loans where startdate>'31-dec-08' and insta>36;
+
+no rows selected
+
+
+12.  SQL> select cus_name,loanamount from loans where insta!=36;
+
+CUS_NAME                                           LOANAMOUNT
+-------------------------------------------------- ----------
+s p sharma                                              50000
+m p  yadhav                                             80000
+p sharma                                                70000
+k s dhall                                               50000
+
+13.  SQL> select cus_name,loanamount from loans where loanamount<50000 or intrate>12.00;
+
+CUS_NAME                                           LOANAMOUNT
+-------------------------------------------------- ----------
+r k gupta                                               30000
+k p jain                                                30000
+s p sinha                                               20000
+p sharma                                                70000
+
+14. SQL> select * from loans where loanamount between 40000 and 50000;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         7 k s dhall                                               50000         48            05-MAR-08       3800
+
+15.  
+SQL> select * from loans where intrate between 11.00 and 12.00;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+
+
+16. SQL>  select cus_name,loanamount from loans where insta in(24,36,48);
+
+CUS_NAME                                           LOANAMOUNT
+-------------------------------------------------- ----------
+r k gupta                                               30000
+s p sharma                                              50000
+k p jain                                                30000
+s p sinha                                               20000
+k s dhall                                               50000
+
+17.  SQL> select accnum,cus_name,loanamount from loans where cus_name like '%sharma';
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT
+---------- -------------------------------------------------- ----------
+         2 s p sharma                                              50000
+         6 t sharma                                                70000
+
+18. SQL> select accnum,cus_name,loanamount from loans where cus_name like '%a';
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT
+---------- -------------------------------------------------- ----------
+         1 r k gupta                                               30000
+         2 s p sharma                                              50000
+         5 s p sinha                                               20000
+         6 t sharma                                                70000
+
+19. 
+SQL> select accnum,cus_name,loanamount from loans where cus_name like '%a%';
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT
+---------- -------------------------------------------------- ----------
+         1 r k gupta                                               30000
+         2 s p sharma                                              50000
+         3 k p jain                                                30000
+         4 m p  yadhav                                             80000
+         5 s p sinha                                               20000
+         6 t sharma                                                70000
+         7 k s dhall                                               50000
+
+20.
+
+SQL> select accnum,cus_name,loanamount from loans where cus_name not like '%p%';
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT
+---------- -------------------------------------------------- ----------
+         6 t sharma                                                70000
+         7 k s dhall                                               50000
+
+
+21. SQL> select accnum,cus_name,loanamount from loans where cus_name like '%a_';
+
+   ACCNUM CUS_NAME                                           LOANAMOUNT
+--------- -------------------------------------------------- ----------
+        4 m p  yadhav                                             80000
+
+
+
+
+22. SQL> select * from loans order by loanamount;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         3 k p jain                                                30000         36            08-MAR-07       1600
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         7 k s dhall                                               50000         48            05-MAR-08       3800
+         6 t sharma                                                70000         60       12.5 05-JUN-08       3500
+         4 m p  yadhav                                             80000         60         10 06-DEC-08       2250
+
+
+23. SQL> select * from loans order by startdate desc;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         4 m p  yadhav                                             80000         60         10 06-DEC-08       2250
+         6 t sharma                                                70000         60       12.5 05-JUN-08       3500
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         7 k s dhall                                               50000         48            05-MAR-08       3800
+         3 k p jain                                                30000         36            08-MAR-07       1600
+
+
+24.
+
+
+
+
+25.   SQL> update loans set intrate=11.50 where intrate is null;
+
+2 rows updated.
+
+SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         2 s p sharma                                              50000         48         10 22-MAR-08       1800
+         3 k p jain                                                30000         36       11.5 08-MAR-07       1600
+         4 m p  yadhav                                             80000         60         10 06-DEC-08       2250
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         6 t sharma                                                70000         60       12.5 05-JUN-08       3500
+         7 k s dhall                                               50000         48       11.5 05-MAR-08       3800
+
+
+26.  SQL> update loans set intrate=intrate+0.5 where loanamount>40000;
+
+4 rows updated.
+
+SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09       1200
+         2 s p sharma                                              50000         48       10.5 22-MAR-08       1800
+         3 k p jain                                                30000         36       11.5 08-MAR-07       1600
+         4 m p  yadhav                                             80000         60       10.5 06-DEC-08       2250
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       4500
+         6 t sharma                                                70000         60         13 05-JUN-08       3500
+         7 k s dhall                                               50000         48         12 05-MAR-08       3800
+
+7 rows selected.
+
+27. SQL> update loans set interest=(loanamount*intrate*insta)/(12*100);
+
+7 rows updated.
+
+SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09      10800
+         2 s p sharma                                              50000         48       10.5 22-MAR-08      21000
+         3 k p jain                                                30000         36       11.5 08-MAR-07      10350
+         4 m p  yadhav                                             80000         60       10.5 06-DEC-08      42000
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       7500
+         6 t sharma                                                70000         60         13 05-JUN-08      45500
+         7 k s dhall                                               50000         48         12 05-MAR-08      24000
+
+7 rows selected.
+
+
+
+28.
+
+SQL> delete from loans where cus_name='k p jain';
+
+1 row deleted.
+
+SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09      10800
+         2 s p sharma                                              50000         48       10.5 22-MAR-08      21000
+         4 m p  yadhav                                             80000         60       10.5 06-DEC-08      42000
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       7500
+         6 t sharma                                                70000         60         13 05-JUN-08      45500
+         7 k s dhall                                               50000         48         12 05-MAR-08      24000
+
+6 rows selected.
+
+
+29.
+SQL> alter table loans add category char(1);
+
+Table altered.
+
+SQL> select * from loans;
+
+    ACCNUM CUS_NAME                                           LOANAMOUNT      INSTA    INTRATE STARTDATE   INTEREST C
+---------- -------------------------------------------------- ---------- ---------- ---------- -----
+         1 r k gupta                                               30000         36         12 19-JUL-09      10800
+         2 s p sharma                                              50000         48       10.5 22-MAR-08      21000
+         4 m p  yadhav                                             80000         60       10.5 06-DEC-08      42000
+         5 s p sinha                                               20000         36       12.5 03-JAN-10       7500
+         6 t sharma                                                70000         60         13 05-JUN-08      45500
+         7 k s dhall                                               50000         48         12 05-MAR-08      24000
+
+6 rows selected.
+
+30.
+
+
+
+SQL> select sum(loanamount) from loans where intrate>10;
+
+SUM(LOANAMOUNT)
+---------------
+         300000
+
+31.
+
+
+SQL>  select max(interest) from loans;
+
+MAX(INTEREST)
+-------------
+        45500
+
+32. 
+
+
+SQL> select count(accnum) from loans where cus_name like '%sharma';
+
+COUNT(ACCNUM)
+-------------
+            2
+
+33.
+
+
+SQL> select count(accnum) from loans where interest is null;
+
+COUNT(ACCNUM)
+-------------
+            0
+
+
+34.
+SQL> select interest from loans group by interest;
+
+  INTEREST
+----------
+     45500
+     24000
+     21000
+      7500
+     10800
+     42000
+
+35.
+SQL> select  interest,insta from loans group by interest,insta having insta>10;
+
+  INTEREST      INSTA
+---------- ----------
+     21000         48
+      7500         36
+     10800         36
+     42000         60
+     45500         60
+     24000         48
+
+6 rows selected.
+
+
+36.
+
+SQL> select count(interest) from loans group by interest,insta having insta>=5;
+
+COUNT(INTEREST)
+---------------
+              1
+              1
+              1
+              1
+              1
+              1
+
+6 rows selected.
