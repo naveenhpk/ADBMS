@@ -1,0 +1,41 @@
+declare
+n number:=&n;
+fac number:=1;
+begin
+while n>0
+loop
+fac:=fac*n;
+n:=n-1;
+end loop;
+dbms_output.put_line('factorial='||fac);
+end;
+/
+
+
+output
+
+Enter value for n: 5
+old   2: n number:=&n;
+new   2: n number:=5;
+factorial=120
+
+
+SQL> declare
+  2  n number:=&n;
+  3  fac number:=1;
+  4  i number;
+  5  begin
+  6  for i in 2..n
+  7  loop
+  8  fac:=fac*i;
+  9  end loop;
+ 10  dbms_output.put_line('factorial='||fac);
+ 11  end;
+ 12  /
+
+output
+
+Enter value for n: 5
+old   2: n number:=&n;
+new   2: n number:=5;
+factorial=120

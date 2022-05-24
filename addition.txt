@@ -1,0 +1,21 @@
+ create or replace function jksum(x in number, y in number)
+ return number as
+ z number;
+ begin
+ z:=x+y;
+ return z;
+ end;
+ /
+
+
+ declare 
+ a number;
+ b number;
+ c number;
+ begin
+ a:=&a;
+ b:=&b;
+ c:=jksum(a,b);
+ dbms_output.put_line('sum of'||a||'and'||b||'is'||c);
+end;
+/

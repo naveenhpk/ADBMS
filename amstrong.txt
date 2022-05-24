@@ -1,0 +1,35 @@
+
+
+SQL> declare
+  2  n number:=&n;
+  3       s number:=0;
+  4       r number;
+  5       len number;
+  6       m number;
+  7   begin
+  8       m:=n;
+  9    
+ 10       len:=length(to_char(n));
+ 11       
+ 12       while n>0
+ 13       loop
+ 14           r:=mod(n,10);
+ 15           s:=s+power(r,len);
+ 16           n:=trunc(n/10);
+ 17       end loop;
+ 18       
+ 19       if m=s
+ 20       then
+ 21           dbms_output.put_line('armstrong number');
+ 22       else
+ 23           dbms_output.put_line('not armstrong number');
+ 24       end if;
+ 25       
+ 26   end;
+ 27   /
+Enter value for n: 589
+old   2: n number:=&n;
+new   2: n number:=589;
+not armstrong number
+
+PL/SQL procedure successfully completed.

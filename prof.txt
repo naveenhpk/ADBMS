@@ -1,0 +1,23 @@
+ create table professor (pNum number, pName varchar(20), salary number(5));
+ insert into professor values(&num,'&name',&salary);
+ 
+ create trigger minSalary BEFORE INSERT ON professor
+ FOR EACH ROW
+ BEGIN
+ IF (:new.salary < 60000)
+ THEN RAISE_APPLICATION_ERROR(-20004,'voilation of Minimum professor Salary');
+ End if;
+ end;
+ /
+ 
+ 
+ create table professor_backlog (pNum number, pName varchar(20), salary number(5));
+ 
+ create or replace trigger backlog AFTER DELETE ON professor
+ FOR EACH ROW
+ BEGIN
+
+INSERT INTO professor_backlog  values(:old.pNum,:old.pName,:old.salary);
+
+ end;
+ /

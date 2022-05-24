@@ -1,0 +1,60 @@
+SQL> create table goldprice(datefield date,price number);
+
+Table created.
+
+SQL> create table goldhistory as select * from goldprice;
+
+Table created.
+
+SQL> insert into goldprice values(sysdate,30000);
+
+1 row created.
+
+SQL> 
+SQL> create or replace trigger t2
+  2  after update on goldprice
+  3  for each row
+  4  begin
+  5  insert into goldhistory values(:old.datefield,:old.price);
+  6  end;
+  7  /
+
+Trigger created.
+
+SQL> update goldprice set price=90000,datefield=sysdate;
+
+1 row updated.
+
+SQL> select * from goldhistory;
+
+DATEFIELD      PRICE
+--------- ----------
+24-MAY-22      30000
+
+SQL> select * from goldprice;
+
+DATEFIELD      PRICE
+--------- ----------
+24-MAY-22      90000
+
+SQL>  update goldprice set price=90008787,datefield=sysdate;
+
+1 row updated.
+
+SQL> select * from goldprice;
+
+DATEFIELD      PRICE
+--------- ----------
+24-MAY-22   90008787
+
+SQL> select * from goldhistory;
+
+DATEFIELD      PRICE
+--------- ----------
+24-MAY-22      30000
+24-MAY-22      90000
+
+SQL> commit;
+
+Commit complete.
+
